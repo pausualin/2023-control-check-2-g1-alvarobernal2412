@@ -2,6 +2,10 @@ package org.springframework.samples.petclinic.disease;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import org.springframework.transaction.annotation.Transactional;
+@Service
 public class SymptomService {
     SymptomRepository repo;
 
@@ -9,11 +13,12 @@ public class SymptomService {
         this.repo=sr;
     }
 
+    @Transactional
     public List<Symptom> getAll() {
-        return null;
+        return repo.findAll();
     }
-
+    @Transactional(readOnly=true)
     public Symptom save(Symptom s) {
-        return null;
+        return repo.save(s);
     }
 }
