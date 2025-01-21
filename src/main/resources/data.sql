@@ -119,3 +119,8 @@ INSERT INTO symptom(id, name, description) VALUES (2, 'Hair loss', 'Hair loss in
 
 INSERT INTO treatment(id, name, description,dose) VALUES (1, 'aspirin', 'Aspirin, also known by its generic name acetylsalicylic acid, is a widely used medication with analgesic (pain-relieving), antipyretic (fever-reducing), and anti-inflammatory properties.', 12);
 INSERT INTO treatment(id, name, description,dose) VALUES (2, 'paracetamol', 'Paracetamol, known as acetaminophen in the United States and Canada, is a widely used over-the-counter (OTC) medication with analgesic (pain-relieving) and antipyretic (fever-reducing) properties.', 20);
+
+INSERT INTO treatment_recommended_for ( treatment_id, recommended_for_id) VALUES (1,2),(2,1);
+INSERT INTO symptom_includes(symptom_id, includes_id) VALUES (1,2),(1,3),(2,1),(2,3);
+INSERT INTO symptom_excludes(symptom_id, excludes_id) VALUES (1,1),(2,2);
+INSERT INTO visits_symptoms(visit_id,symptoms_id) VALUES (1,1),(1,2);
