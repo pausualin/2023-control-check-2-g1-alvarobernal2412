@@ -113,3 +113,9 @@ INSERT INTO consultation_tickets(id,description,creation_date, user_id, consulta
 INSERT INTO consultation_tickets(id,description,creation_date, user_id, consultation_id) VALUES (6, 'Try to give him some tuna to check if he eats that.', '2023-04-11 15:20', 15, 3);
 INSERT INTO consultation_tickets(id,description,creation_date, user_id, consultation_id) VALUES (7, 'My lovebird doesn''t sing as my neighbour''s one.', '2023-02-24 12:30', 5, 4);
 INSERT INTO consultation_tickets(id,description,creation_date, user_id, consultation_id) VALUES (8, 'Lovebirds do not sing.', '2023-02-24 18:30', 16, 4);
+
+INSERT INTO symptom(id, name, description) VALUES (1,'Cough', null);
+INSERT INTO symptom(id, name, description) VALUES (2, 'Hair loss', 'Hair loss in animals, also known as alopecia, can be a common and concerning symptom with various potential underlying causes.');
+
+INSERT INTO treatment(id, name, description,dose) VALUES (1, 'aspirin', 'Aspirin, also known by its generic name acetylsalicylic acid, is a widely used medication with analgesic (pain-relieving), antipyretic (fever-reducing), and anti-inflammatory properties.', 12);
+INSERT INTO treatment(id, name, description,dose) VALUES (2, 'paracetamol', 'Paracetamol, known as acetaminophen in the United States and Canada, is a widely used over-the-counter (OTC) medication with analgesic (pain-relieving) and antipyretic (fever-reducing) properties.', 20);
