@@ -12,7 +12,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.clinic.PricingPlan;
+import org.springframework.samples.petclinic.disease.Disease;
 import org.springframework.samples.petclinic.exceptions.ResourceNotFoundException;
+import org.springframework.samples.petclinic.pet.Pet;
+import org.springframework.samples.petclinic.pet.PetRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,10 +27,12 @@ public class VisitService {
 	private static final Integer PLATINUM_LIMIT = 6;
 
 	private final VisitRepository visitRepository;
+	private final PetRepository petRepository;
 
 	@Autowired
-	public VisitService(VisitRepository visitRepository) {
+	public VisitService(VisitRepository visitRepository, PetRepository petRepository) {
 		this.visitRepository = visitRepository;
+		this.petRepository = petRepository;
 	}
 
 	@Transactional(readOnly = true)
@@ -52,8 +57,13 @@ public class VisitService {
 
 	@Transactional
 	public Visit save(Visit visit) throws DataAccessException,UnfeasibleDiagnoseException {
-		// TODO Change to implement exercise 8!
-		return visitRepository.save(visit);
+		Disease disease= visit.getDiagnose();
+		Pet pet= visit.getPet();
+		if(disease.getSusceptiblePetTypes().contains(pet.getType())){
+			return visitRepository.save(visit);
+		}else{
+			throw new UnfeasibleDiagnoseException();
+		}
 	}
 
 	@Transactional
