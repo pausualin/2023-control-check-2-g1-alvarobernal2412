@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.samples.petclinic.disease.Disease;
 import org.springframework.samples.petclinic.disease.campaign.CampaignDesignAlgorithm;
@@ -44,7 +45,50 @@ public class CampaignDesignTest {
         assertEquals(TODO: COMPLETE HERE!);
     }        
      */
+    @BeforeEach
+    public void setUp() {
+        // Initialize any necessary data or configurations here
+    }
 
+
+    @Test
+    public void testIdentifyDiseasesWithMultipleVisits() {
+        // Arrangement / Configuration / Fixture
+        Set<Visit> data = Set.of(createVisit(ninjaContusion), createVisit(shellShock), createVisit(switchOff));
+        
+        // Act / SUT invocation
+        Set<Disease> actualResult = algorithm.identifyDiseases(data);
+        
+        // Assert
+        Set<Disease> expectedResult = Set.of(switchOff);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void testIdentifyDiseasesWithEmptyVisits() {
+        // Arrangement / Configuration / Fixture
+        Set<Visit> data = Set.of();
+        
+        // Act / SUT invocation
+        Set<Disease> actualResult = algorithm.identifyDiseases(data);
+        
+        // Assert
+        Set<Disease> expectedResult = Set.of();
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void testIdentifyDiseasesWithSingleVisit() {
+        // Arrangement / Configuration / Fixture
+        Set<Visit> data = Set.of(createVisit(insertCoin));
+        
+        // Act / SUT invocation
+        Set<Disease> actualResult = algorithm.identifyDiseases(data);
+        
+        // Assert
+        Set<Disease> expectedResult = Set.of(insertCoin);
+        assertEquals(expectedResult, actualResult);
+    }
 
     // We provide this method to ease the creation of valid Visits
     public Visit createVisit(Disease d){
