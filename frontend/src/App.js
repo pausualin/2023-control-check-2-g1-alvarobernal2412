@@ -47,6 +47,8 @@ import ConsultationListClinicOwner from "./clinicOwner/consultations/Consultatio
 import ConsultationEditClinicOwner from "./clinicOwner/consultations/ConsultationEditClinicOwner";
 import VetListClinicOwner from "./clinicOwner/vets/VetListClinicOwner";
 import VetEditClinicOwner from "./clinicOwner/vets/VetEditClinicOwner";
+import DiseasesListing from "./disease";
+
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -98,6 +100,8 @@ function App() {
           <Route path="/consultations" exact={true} element={<PrivateRoute><ConsultationListAdmin /></PrivateRoute>} />
           <Route path="/consultations/:consultationId" exact={true} element={<PrivateRoute><ConsultationEditAdmin /></PrivateRoute>} />
           <Route path="/consultations/:consultationId/tickets" exact={true} element={<PrivateRoute><TicketListAdmin /></PrivateRoute>} />
+          <Route path="/diseases" exact={true} element={<PrivateRoute><DiseasesListing /></PrivateRoute>} />
+    
         </>)
     }
     if (role === "OWNER") {
@@ -111,6 +115,8 @@ function App() {
           <Route path="/consultations" exact={true} element={<PrivateRoute><OwnerConsultationList /></PrivateRoute>} />
           <Route path="/consultations/:consultationId" exact={true} element={<PrivateRoute><OwnerConsultationEdit /></PrivateRoute>} />
           <Route path="/consultations/:consultationId/tickets" exact={true} element={<PrivateRoute><OwnerConsultationTickets /></PrivateRoute>} />
+          <Route path="/diseases" exact={true} element={<PrivateRoute><DiseasesListing /></PrivateRoute>} />
+            
         </>)
     }
     if (role === "VET") {
@@ -120,6 +126,8 @@ function App() {
           <Route path="/myPets" exact={true} element={<PrivateRoute><OwnerPetList /></PrivateRoute>} />
           <Route path="/consultations" exact={true} element={<PrivateRoute><VetConsultationList /></PrivateRoute>} />
           <Route path="/consultations/:consultationId/tickets" exact={true} element={<PrivateRoute><VetConsultationTickets /></PrivateRoute>} />
+          <Route path="/diseases" exact={true} element={<PrivateRoute><DiseasesListing /></PrivateRoute>} />
+    
         </>)
     }
     if (role === "CLINIC_OWNER") {
@@ -133,6 +141,8 @@ function App() {
           <Route path="/consultations/:id/tickets" exact={true} element={<PrivateRoute><VetConsultationTickets /></PrivateRoute>} />
           <Route path="/vets" exact={true} element={<PrivateRoute><VetListClinicOwner /></PrivateRoute>} />
           <Route path="/vets/:id" exact={true} element={<PrivateRoute><VetEditClinicOwner /></PrivateRoute>} />
+          <Route path="/diseases" exact={true} element={<PrivateRoute><DiseasesListing /></PrivateRoute>} />
+    
         </>)
     }
   })
@@ -141,6 +151,8 @@ function App() {
       <>        
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/diseases" element={<DiseasesListing />} />
+       
       </>
     )
   } else {
